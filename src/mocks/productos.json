@@ -1,0 +1,24 @@
+[
+  {
+    "id": 1,
+    "title": "Nombre del producto",
+    "description": "Descripción del producto",
+    "code": "P001",
+    "price": 500,
+    "status": true,
+    "stock": 42,
+    "category": "Electrónic",
+    "thumbnails": ["imagen1.jpg", "imagen2.jpg"]
+  },
+  {
+    "id": 2,
+    "title": "Producto Actualizado",
+    "description": "Descripción del producto",
+    "code": "P002",
+    "price": 250,
+    "status": true,
+    "stock": 34,
+    "category": "Electrónic",
+    "thumbnails": ["imagen1.jpg", "imagen2.jpg"]
+  }
+]
