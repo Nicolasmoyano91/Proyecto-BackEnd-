@@ -10,7 +10,7 @@ const productsController = {
       const products = JSON.parse(fs.readFileSync(productosFilePath, "utf-8"));
       res.json(products);
     } catch (error) {
-      res.status(500).json({ error: "Error al obtener los productos" });
+      res.status(500).json({ error: "Error obtaining the products" });
     }
   },
   getProductById: (req, res) => {
@@ -19,11 +19,11 @@ const productsController = {
       const products = JSON.parse(fs.readFileSync(productosFilePath, "utf-8"));
       const product = products.find((product) => product.id === productId);
       if (!product) {
-        return res.status(404).json({ error: "Producto no encontrado" });
+        return res.status(404).json({ error: "Product not found" });
       }
       res.json(product);
     } catch (error) {
-      res.status(500).json({ error: "Error al obtener el producto por ID" });
+      res.status(500).json({ error: "Error getting product by ID" });
     }
   },
   addProduct: (req, res) => {
@@ -45,7 +45,7 @@ const productsController = {
       fs.writeFileSync(productosFilePath, JSON.stringify(products, null, 2));
       res.status(201).json(newProduct);
     } catch (error) {
-      res.status(500).json({ error: "Error al agregar el producto" });
+      res.status(500).json({ error: "Error adding product" });
     }
   },
   updateProduct: (req, res) => {
@@ -56,14 +56,14 @@ const productsController = {
       const products = JSON.parse(fs.readFileSync(productosFilePath, "utf-8"));
       const index = products.findIndex((product) => product.id === productId);
       if (index === -1) {
-        return res.status(404).json({ error: "Producto no encontrado" });
+        return res.status(404).json({ error: "Product not found" });
       }
 
       products[index] = { ...products[index], ...updatedFields };
       fs.writeFileSync(productosFilePath, JSON.stringify(products, null, 2));
       res.json(products[index]);
     } catch (error) {
-      res.status(500).json({ error: "Error al actualizar el producto" });
+      res.status(500).json({ error: "Error updating product" });
     }
   },
   deleteProduct: (req, res) => {
@@ -74,15 +74,15 @@ const productsController = {
         (product) => product.id !== productId
       );
       if (filteredProducts.length === products.length) {
-        return res.status(404).json({ error: "Producto no encontrado" });
+        return res.status(404).json({ error: "Product not found" });
       }
       fs.writeFileSync(
         productosFilePath,
         JSON.stringify(filteredProducts, null, 2)
       );
-      res.json({ message: "Producto eliminado correctamente" });
+      res.json({ message: "Product disposed correctly" });
     } catch (error) {
-      res.status(500).json({ error: "Error al eliminar el producto" });
+      res.status(500).json({ error: "Error deleting product" });
     }
   },
 };

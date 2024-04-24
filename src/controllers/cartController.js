@@ -11,7 +11,7 @@ const cartsController = {
       const carts = JSON.parse(fs.readFileSync(carritoFilePath, "utf-8"));
       res.json(carts);
     } catch (error) {
-      res.status(500).json({ error: "Error al obtener los carritos" });
+      res.status(500).json({ error: "Error getting carts" });
     }
   },
 
@@ -26,7 +26,7 @@ const cartsController = {
       fs.writeFileSync(carritoFilePath, JSON.stringify(carts, null, 2));
       res.status(201).json(newCart);
     } catch (error) {
-      res.status(500).json({ error: "Error al crear el carrito" });
+      res.status(500).json({ error: "Error creating cart" });
     }
   },
 
@@ -36,11 +36,11 @@ const cartsController = {
       const carts = JSON.parse(fs.readFileSync(carritoFilePath, "utf-8"));
       const cart = carts.find((cart) => cart.id === cartId);
       if (!cart) {
-        return res.status(404).json({ error: "Carrito no encontrado" });
+        return res.status(404).json({ error: "Cart not found" });
       }
       res.json(cart.products);
     } catch (error) {
-      res.status(500).json({ error: "Error al obtener el carrito por ID" });
+      res.status(500).json({ error: "Error getting cart by ID" });
     }
   },
   addProductToCart: (req, res) => {
@@ -52,7 +52,7 @@ const cartsController = {
       let carts = JSON.parse(fs.readFileSync(carritoFilePath, "utf-8"));
       let cart = carts.find((cart) => cart.id === cartId);
       if (!cart) {
-        return res.status(404).json({ error: "Carrito no encontrado" });
+        return res.status(404).json({ error: "Cart not found" });
       }
 
       let productInCart = cart.products.find(
@@ -67,9 +67,7 @@ const cartsController = {
       fs.writeFileSync(carritoFilePath, JSON.stringify(carts, null, 2));
       res.json(cart);
     } catch (error) {
-      res
-        .status(500)
-        .json({ error: "Error al agregar el producto al carrito" });
+      res.status(500).json({ error: "Error adding product to cart" });
     }
   },
 };
